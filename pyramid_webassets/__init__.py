@@ -47,6 +47,8 @@ class PyramidResolver(Resolver):
         self.resolver = AssetResolver(None)
 
     def _split_spec(self, item):
+        if path.isfile(item):
+            return (__name__, item)
         if ':' in item:
             package, subpath = item.split(':', 1)
             return (package, subpath)
